@@ -23,44 +23,44 @@ namespace Api.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class TipoController : ControllerBase
+    public class ExercicioController : ControllerBase
     {
-        private ITipoRepository _tipo;
+        private IExercicioRepository _Exercicio;
         private readonly AppSettings _appSettings;
-        public TipoController(ITipoRepository tipo, IOptions<AppSettings> appSettings)
+        public ExercicioController(IExercicioRepository Exercicio, IOptions<AppSettings> appSettings)
         {
-            _tipo = tipo;
+            _Exercicio = Exercicio;
             _appSettings = appSettings.Value;
         }
 
         [HttpGet("ListarTodos")]
-        public Return Tipo_ListarTodos()
+        public Return Exercicio_ListarTodos()
         {
-            return _tipo.Tipo_ListarTodos();
+            return _Exercicio.Exercicio_ListarTodos();
         }
 
         [HttpPost("BuscaDinamicaFlexivel")]
-        public Return Tipo_BuscaDinamicaFlexivel(dynamic Obj)
+        public Return Exercicio_BuscaDinamicaFlexivel(dynamic Obj)
         {
-            return _tipo.Tipo_BuscaDinamicaFlexivel(Obj); ;
+            return _Exercicio.Exercicio_BuscaDinamicaFlexivel(Obj); ;
         }
 
         [HttpPost("BuscaDinamicaRigida")]
-        public Return Tipo_BuscaDinamicaRigida(dynamic Obj)
+        public Return Exercicio_BuscaDinamicaRigida(dynamic Obj)
         {
-            return _tipo.Tipo_BuscaDinamicaRigida(Obj); ;
+            return _Exercicio.Exercicio_BuscaDinamicaRigida(Obj); ;
         }
 
         [HttpPost("Criar")]
-        public Return Tipo_Criar(dynamic Obj)
+        public Return Exercicio_Criar(dynamic Obj)
         {
-            return _tipo.Tipo_Criar(Obj);
+            return _Exercicio.Exercicio_Criar(Obj);
         }
 
         [HttpPut("Alterar")]
-        public Return Tipo_Alterar(dynamic Obj)
+        public Return Exercicio_Alterar(dynamic Obj)
         {
-            return _tipo.Tipo_Alterar(Obj);
+            return _Exercicio.Exercicio_Alterar(Obj);
         }
 
     }

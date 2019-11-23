@@ -76,7 +76,7 @@ namespace Api.Repository
                 _context.Tipo.Add(Tipo);
                 var retornoTipo = _context.SaveChanges();
                 if (retornoTipo != 0)
-                    return Return.Success(Tipo);
+                    return Return.Success("Tipo de exercício cadastrado com sucesso!");
                 else
                     return Return.CustomError("Erro ao salvar o Tipo do exercício.");
             }
@@ -93,7 +93,7 @@ namespace Api.Repository
                 var vTipo = _context.Tipo.First(p => p.IDTipo == Tipo.IDTipo);
                 _context.Entry(vTipo).CurrentValues.SetValues(Tipo);
                 _context.SaveChanges();
-                return Return.Success(Tipo);
+                return Return.Success("Tipo de exercício alterado com sucesso!");
             }
             catch (Exception ex)
             {

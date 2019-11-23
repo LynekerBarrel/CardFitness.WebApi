@@ -23,7 +23,21 @@ namespace Api.Repository
         {
             try
             {
-                var retorno = _context.Exercicio.ToList();
+                var retorno = from exercicio in _context.Exercicio
+                        join tipo in _context.Tipo on exercicio.IDTipo equals tipo.IDTipo into t
+                        from tipo in t.DefaultIfEmpty()
+                        select new
+                        {
+                            tipo,
+                            exercicio.IDExercicio,
+                            exercicio.IDTipo,
+                            exercicio.Descricao,
+                            exercicio.Chave,
+                            exercicio.Status,
+
+                        };
+
+                //var retorno = _context.Exercicio.ToList();
                 if (retorno.Any())
                     return Return.Success(retorno);
                 else
@@ -76,7 +90,7 @@ namespace Api.Repository
                 _context.Exercicio.Add(Exercicio);
                 var retornoExercicio = _context.SaveChanges();
                 if (retornoExercicio != 0)
-                    return Return.Success(Exercicio);
+                    return Return.Success("Exercício criado com sucesso!");
                 else
                     return Return.CustomError("Erro ao salvar o Exercicio do exercício.");
             }
@@ -93,7 +107,7 @@ namespace Api.Repository
                 var vExercicio = _context.Exercicio.First(p => p.IDExercicio == Exercicio.IDExercicio);
                 _context.Entry(vExercicio).CurrentValues.SetValues(Exercicio);
                 _context.SaveChanges();
-                return Return.Success(Exercicio);
+                return Return.Success("Exercício alterado com sucesso!");
             }
             catch (Exception ex)
             {

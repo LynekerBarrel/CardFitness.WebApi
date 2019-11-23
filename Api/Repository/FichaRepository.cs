@@ -77,7 +77,7 @@ namespace Api.Repository
                 _context.Ficha.Add(Ficha);
                 var retornoFicha = _context.SaveChanges();
                 if (retornoFicha != 0)
-                    return Return.Success(Ficha);
+                    return Return.Success("Ficha criada com sucesso!");
                 else
                     return Return.CustomError("Erro ao salvar o Ficha do exercício.");
             }
@@ -94,7 +94,7 @@ namespace Api.Repository
                 var vFicha = _context.Ficha.First(p => p.IDFicha == Ficha.IDFicha);
                 _context.Entry(vFicha).CurrentValues.SetValues(Ficha);
                 _context.SaveChanges();
-                return Return.Success(Ficha);
+                return Return.Success("Ficha alterada com sucesso!");
             }
             catch (Exception ex)
             {
@@ -147,7 +147,7 @@ namespace Api.Repository
                 _context.FichaExercicio.Add(FichaExercicio);
                 var retornoFichaExercicio = _context.SaveChanges();
                 if (retornoFichaExercicio != 0)
-                    return Return.Success(FichaExercicio);
+                    return Return.Success("Exercício foi vinculado a ficha com sucesso!");
                 else
                     return Return.CustomError("Erro ao salvar o FichaExercicio do exercício.");
             }
@@ -164,7 +164,7 @@ namespace Api.Repository
                 var vFichaExercicio = _context.FichaExercicio.First(p => p.IDFichaExercicio == FichaExercicio.IDFichaExercicio);
                 _context.Entry(vFichaExercicio).CurrentValues.SetValues(FichaExercicio);
                 _context.SaveChanges();
-                return Return.Success(FichaExercicio);
+                return Return.Success("Erro ao alterar o vínculo do exercício na ficha");
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace Api.Repository
                 var vFilaFicha = _context.FilaFicha.First(p => p.IDFilaFicha == FilaFicha.IDFilaFicha);
                 _context.Entry(vFilaFicha).CurrentValues.SetValues(FilaFicha);
                 _context.SaveChanges();
-                return Return.Success(FilaFicha);
+                return Return.Success("Parabéns! Executado com sucesso!");
             }
             catch (Exception ex)
             {
